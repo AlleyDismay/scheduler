@@ -26,7 +26,7 @@ export default function Appointment({ key, time, interview, interviewers }) {
     {mode === SHOW && (
       <Show
         student={interview ? interview.student : `Mode is ${mode}, but Interview is ${interview}... And I know the problem is with 'mode ==='`}
-        interviewer={interview ? interview.student : {
+        interviewer={interview ? interview.interviewer : {
           "id": 1,
           "name": "Sylvia Palmer",
           "avatar": "https://i.imgur.com/LpaY82x.png"
