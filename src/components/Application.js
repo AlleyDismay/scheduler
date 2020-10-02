@@ -35,7 +35,7 @@ export default function Application(props) {
     statePromises
       .then(([daysResp, appointsResp, intervsResp]) => {
         setState({
-          day: state.day,
+          day: "Monday",
           days: daysResp.data,
           appointments: appointsResp.data,
           interviewers: intervsResp.data
