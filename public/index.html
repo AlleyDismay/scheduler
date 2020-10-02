@@ -76,5 +76,4 @@
 <script>
   $("#tag").append([...new Set([...$("html *")].map(node => node.nodeName[0]+node.nodeName.slice(1).toLowerCase()))].sort().map(tag => `<option value=${tag}>${tag}</option>`).toString().replace(/,/g, ""));
   // <a href="" download={$("html").html()}>Download Page</a>
-  }
 </script>

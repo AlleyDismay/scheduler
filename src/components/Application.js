@@ -67,10 +67,11 @@ export default function Application(props) {
       </section>
       <section className="schedule">
         {/* {Object.values(appointments()).map((appointment) => { return <Appointment {...appointment} /> })} */}
-        {getAppointmentsForDay(state, day()).map((appointment) => {
+        {getAppointmentsForDay(state, day()).map(({id, time, interview}) => {
           return <Appointment
-            {...appointment}
-            interview={getInterview(state, appointment.interview)}
+            id={id}
+            time={time}
+            interview={getInterview(state, interview)}
           />
         })}
         <Appointment key="last" time="5pm" />
