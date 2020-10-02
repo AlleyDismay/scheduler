@@ -31,7 +31,7 @@ export default function Appointment({ key, time, interview, interviewers }) {
           "name": "Sylvia Palmer",
           "avatar": "https://i.imgur.com/LpaY82x.png"
         }}
-        onEdit={() => back()}
+        onEdit={() => transition(CREATE)}
         onDelete={() => transition(EMPTY)}
       />
     )}

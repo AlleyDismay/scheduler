@@ -12,7 +12,7 @@ export default function InterviewerList({ interviewers, interviewer, setIntervie
         <ul className="interviewers__list">
           {interviewers.map(({ id, name, avatar }) => {
             return <InterviewerListItem
-              id={id}
+              key={id}
               name={name}
               avatar={avatar}
               setInterviewer={setInterviewer}
