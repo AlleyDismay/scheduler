@@ -8,7 +8,7 @@ import "components/Application.scss";
 
 import Appointment from "components/Appointment";
 
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewsForDay} from "helpers/selectors";
 
 export default function Application(props) {
 
@@ -72,6 +72,7 @@ export default function Application(props) {
             id={id}
             time={time}
             interview={getInterview(state, interview)}
+            interviewers={getInterviewsForDay(state, interview)}
           />
         })}
         <Appointment key="last" time="5pm" />
