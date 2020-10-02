@@ -42,6 +42,17 @@ export default function Application(props) {
       });
   }, []);
 
+  // function save(name, interviewer) {
+  //   const interview = {
+  //     student: name,
+  //     interviewer
+  //   };
+  // }  
+
+  // function bookInterview(id, interview) {
+  //   console.log(id, interview);
+  // }  
+
   return (
     <main className="layout">
       <section className="sidebar">
