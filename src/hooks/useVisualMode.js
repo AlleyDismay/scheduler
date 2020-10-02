@@ -13,9 +13,7 @@ export default function useVisualMode(initial) {
 
   function back() {
     if (history.join()) {
-      console.log(history)
       setMode(history.shift());
-      console.log(history)
       setHistory(history);
     }
   }
