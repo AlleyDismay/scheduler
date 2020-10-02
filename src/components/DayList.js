@@ -7,7 +7,7 @@ export default function DayList({ days, day, setDay }) {
     <ul>
       {days.map((weekday) => {
         return <DayListItem
-          name={weekday.name}
+          key={weekday.name}
           spots={weekday.spots}
           selected={weekday.name === day}
           setDay={setDay}

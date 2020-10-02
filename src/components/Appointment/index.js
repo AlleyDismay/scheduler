@@ -9,7 +9,7 @@ import Form from "components/Appointment/Form";
 
 import useVisualMode from "hooks/useVisualMode";
 
-export default function Appointment({ id, time, interview, interviewers }) {
+export default function Appointment({ key, time, interview, interviewers }) {
 
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
