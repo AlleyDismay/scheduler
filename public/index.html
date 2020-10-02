@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <!--
+
+<style>
+  .dark-mode {
+    background-color: black;
+    color: white;
+  }
+</style>
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -19,12 +30,14 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>Interview Scheduler</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
+  <title>Interview Scheduler</title>
+</head>
+
+<body>
+
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
@@ -34,5 +47,37 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  </body>
+</body>
+
 </html>
+<section id="Colorizer" style="position: fixed; bottom: 0px; background-color: aliceblue; width: 100%">
+
+  Component
+  <select label="HTML Tag" id="tag">
+    <option value="Select Item">Select Item</option>
+  </select>
+
+  CSS Property
+  <select label="CSS Property" id="feature">
+    <option value="Select Item">Select Item</option>
+    <option value="Color">Color</option>
+    <option value="Background-Color">Background Color</option>
+  </select>
+  
+  <label for="color">Color:
+    <!-- Need to set a maximum input length... And figure out what format... Hex, with, or without, hash... Etc... Options, options... -->
+    <input type="text" name="color" id="color">
+  </label>
+
+  <button onClick=$($("#tag").val()).css("color",$("#color").val())>Apply</button>
+  <!-- <button onClick=$($("select").val())).css("color",$("label[for=color]").val())>Apply</button> -->
+  <button onClick=darkMode()>Dark Mode</button>
+</section>
+<script>
+  $("#tag").append([...new Set([...$("html *")].map(node => node.nodeName[0]+node.nodeName.slice(1).toLowerCase()))].sort().map(tag => `<option value=${tag}>${tag}</option>`).toString().replace(/,/g, ""));
+  // <a href="" download={$("html").html()}>Download Page</a>
+  function darkMode() {
+    var element = document.body;
+    element.classList.toggle("dark-mode");
+  }
+</script>
