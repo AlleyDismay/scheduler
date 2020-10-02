@@ -61,7 +61,7 @@
   <select label="CSS Property" id="feature">
     <option value="">Select Item</option>
     <option value="color">Text Color</option>
-    <option value="Background-Color">Background Color</option>
+    <option value="background-color">Background Color</option>
   </select>
   
   <label for="color">Hex Color (e.g #123456):
@@ -69,7 +69,7 @@
     <input type="text" name="color" id="color">
   </label>
 
-  <button onClick=$($("#tag").val()).css("color",$("#color").val())>Apply</button>
+  <button onClick=$($("#tag").val()).css($("#feature").val(),$("#color").val())>Apply</button>
   <!-- <button onClick=$($("select").val())).css("color",$("label[for=color]").val())>Apply</button> -->
   <button style="float: right;" onClick=document.body.classList.toggle("dark-mode")>Dark Mode</button>
 </section>
