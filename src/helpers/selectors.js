@@ -1,6 +1,6 @@
-export function getAppointmentsForDay({ days, appointments, interviewers }, dayWanted) {
+export function getAppointmentsForDay({ days, appointments}, dayWanted) {
   try {
-    return days.filter(day => day["name"] == dayWanted)[0]["appointments"].map(appointment => appointments[appointment]);
+    return days.filter(day => day["name"] === dayWanted)[0]["appointments"].map(appointment => appointments[appointment]);
   }
   catch {
     return [];
@@ -9,10 +9,10 @@ export function getAppointmentsForDay({ days, appointments, interviewers }, dayW
 
 export function getInterview(...params) {
   try {
-    const [{ days, appointments, interviewers}, { student, interviewer }] = params;
+    const [state, { student, interviewer }] = params;
     return {
       "interviewer":
-        { ...interviewers[interviewer] },
+        { ...state.interviewers[interviewer] },
       "student": student
     };
   }
@@ -21,7 +21,7 @@ export function getInterview(...params) {
 
 export function getInterviewsForDay({ days, appointments, interviewers }, interviewWanted) {
   try {
-    return days.filter(day => day["name"] == interviewWanted)[0]["interviewers"].map(interview => interviewers[interview]);
+    return days.filter(day => day["name"] === interviewWanted)[0]["interviewers"].map(interview => interviewers[interview]);
   }
   catch {
     return [];
