@@ -8,7 +8,7 @@ import "components/Application.scss";
 
 import Appointment from "components/Appointment";
 
-import {getAppointmentsForDay, getInterview} from "helpers/selectors.js";
+import {getAppointmentsForDay, getInterview} from "helpers/selectors";
 
 export default function Application(props) {
 

@@ -18,3 +18,12 @@ export function getInterview(...params) {
   }
   catch { return null; }
 }
+
+export function getInterviewsForDay({ days, appointments, interviewers }, interviewWanted) {
+  try {
+    return days.filter(day => day["name"] == interviewWanted)[0]["interviewers"].map(interview => interviewers[interview]);
+  }
+  catch {
+    return [];
+  }
+}
