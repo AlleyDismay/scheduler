@@ -31,9 +31,15 @@ export default function Appointment({ id, time, interview, interviewers }) {
           "name": "Sylvia Palmer",
           "avatar": "https://i.imgur.com/LpaY82x.png"
         }}
+        onEdit={() => transition(SHOW)}
+        onDelete={() => transition(EMPTY)}
       />
     )}
-    {mode === CREATE && <Form interviewers={interviewers} />}
+    {mode === CREATE && <Form
+      interviewers={interviewers}
+      onSave={() => transition(SHOW)}
+      onCancel={back}
+      />}
 
   </article>
 }

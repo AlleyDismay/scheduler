@@ -4,7 +4,7 @@ import Button from "components/Button";
 import InterviewerList from "components/InterviewerList";
 
 
-export default function Form({name, interviewer, interviewers, onSave, onCancel}) {
+export default function Form({ name, interviewer, interviewers, onSave, onCancel }) {
 
   const [studentName, setName] = useState(name || "");
   const [currentInterviewer, setInterviewer] = useState(interviewer || null);
@@ -26,11 +26,11 @@ export default function Form({name, interviewer, interviewers, onSave, onCancel}
     </section>
     <section className="appointment__card-right">
       <section className="appointment__actions">
-        <Button danger onClick={() => {setName(""); setInterviewer(null); onCancel()}}>Cancel</Button>
-        <Button confirm onClick={onSave}>Save</Button>
+        <Button danger onClick={() => onCancel()}>Cancel</Button>
+        <Button confirm onClick={() => {setName(studentName); setInterviewer(null); onSave()}}>Save</Button>
       </section>
     </section>
-  </main>
+  </main >
 
 
 }
