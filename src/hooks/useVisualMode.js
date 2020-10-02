@@ -6,13 +6,15 @@ export default function useVisualMode(initial) {
 
   function transition(update, replace = false) {
     if (!replace) {
-      setHistory(history.concat[mode]);
-  }
-  setMode(update)
+      setHistory([mode].concat(history));
+    }
+    setMode(update)
   }
 
   function back() {
-    
+    if (history.join()) {
+      setMode(history.shift());
+    }
   }
 
   return { mode, transition, back };
