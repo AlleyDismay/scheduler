@@ -8,8 +8,6 @@ export default function Form({name, interviewer, interviewers, onSave, onCancel}
 
   const [studentName, setName] = useState(name || "");
   const [currentInterviewer, setInterviewer] = useState(interviewer || null);
-  
-
 
   return <main className="appointment__card appointment__card--create">
     <section className="appointment__card-left">

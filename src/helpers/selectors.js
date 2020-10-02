@@ -19,9 +19,9 @@ export function getInterview(...params) {
   catch { return null; }
 }
 
-export function getInterviewsForDay({ days, appointments, interviewers }, interviewWanted) {
+export function getInterviewsForDay({ days, appointments, interviewers }, dayWanted) {
   try {
-    return days.filter(day => day["name"] === interviewWanted)[0]["interviewers"].map(interview => interviewers[interview]);
+    return days.filter(day => day["name"] === dayWanted)[0]["interviewers"].map(interview => interviewers[interview]);
   }
   catch {
     return [];
