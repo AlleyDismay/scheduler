@@ -14,8 +14,8 @@ export default function useVisualMode(initial) {
   function back() {
     if (history.join()) {
       setMode(history.shift());
-      setHistory(history);
     }
+    setHistory(history);
   }
 
   return { mode, transition, back };
