@@ -5,8 +5,6 @@ import "components/DayListItem.scss";
 
 export default function DayListItem({ name, setDay, spots, selected }) {
 
-  console.log(name)
-
   return (
     <li
       selected={selected}

@@ -9,7 +9,7 @@ import Form from "components/Appointment/Form";
 
 import useVisualMode from "hooks/useVisualMode";
 
-export default function Appointment({ id, time, interview, interviewers }) {
+export default function Appointment({ key, id, time, interview, interviewers, bookInterview}) {
 
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
@@ -17,23 +17,31 @@ export default function Appointment({ id, time, interview, interviewers }) {
 
   const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY)
 
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+    bookInterview(id, interview)
+    transition(SHOW)
+  }
+
   return <article className="appointment">
     <Header time={time} />
-
-    {/* {(interview ? <Show {...interview} /> : <Empty />)} */}
-
     {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
     {mode === SHOW && (
       <Show
-        student={interview ? interview.student : `Mode is ${mode}, but Interview is ${interview}... And I know the problem is with 'mode ==='`}
-        interviewer={interview ? interview.student : {
-          "id": 1,
-          "name": "Sylvia Palmer",
-          "avatar": "https://i.imgur.com/LpaY82x.png"
-        }}
+        student={interview.student}
+        interviewer={interview.interviewer}
+        onEdit={() => transition(CREATE)}
+        onDelete={() => transition(EMPTY)}
       />
     )}
-    {mode === CREATE && <Form interviewers={interviewers} />}
+    {mode === CREATE && <Form
+      interviewers={interviewers}
+      onSave={() => transition(SHOW)}
+      onCancel={() => back}
+      />}
 
   </article>
 }
