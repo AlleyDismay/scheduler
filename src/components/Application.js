@@ -81,7 +81,6 @@ export default function Application(props) {
 
       </section>
       <section className="schedule">
-        {/* {Object.values(appointments()).map((appointment) => { return <Appointment {...appointment} /> })} */}
         {getAppointmentsForDay(state, state.day).map(({id, time, interview}) => {
           return <Appointment
             key={id}

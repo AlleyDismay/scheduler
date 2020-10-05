@@ -22,7 +22,7 @@ export default function Appointment({ key, id, time, interview, interviewers, bo
       student: name,
       interviewer
     };
-    bookInterview(id, interview)
+    bookInterview(id, interview);
     transition(SHOW)
   }
 
@@ -39,7 +39,7 @@ export default function Appointment({ key, id, time, interview, interviewers, bo
     )}
     {mode === CREATE && <Form
       interviewers={interviewers}
-      onSave={() => transition(SHOW)}
+      onSave={() => save}
       onCancel={() => back}
       />}
 
