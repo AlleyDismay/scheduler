@@ -42,13 +42,6 @@ export default function Application(props) {
       });
   }, []);
 
-  // function save(name, interviewer) {
-  //   const interview = {
-  //     student: name,
-  //     interviewer
-  //   };
-  // }  
-
   // function bookInterview(id, interview) {
   //   console.log(id, interview);
   // }  
@@ -80,9 +73,11 @@ export default function Application(props) {
         {getAppointmentsForDay(state, day()).map(({id, time, interview}) => {
           return <Appointment
             key={id}
+            id={id}
             time={time}
             interview={getInterview(state, interview)}
             interviewers={getInterviewsForDay(state, day())}
+            // bookInterview={bookInterview}
           />
         })}
         <Appointment key="last" time="5pm" />
