@@ -13,10 +13,10 @@ export default function Form({name, interviewer, interviewers, onSave, onCancel 
 
   return <main className="appointment__card appointment__card--create">
     <section className="appointment__card-left">
-      <form autoComplete="off" onSubmit={event => event.preventDefault()}>
+      <form autoComplete="off" onSubmit={event => {event.preventDefault(); setName(event.target.value)}}>
         <input
           className="appointment__create-input text--semi-bold"
-          name={newName}
+          name="name"
           type="text"
           placeholder="Enter Student Name"
         /*
@@ -24,12 +24,12 @@ export default function Form({name, interviewer, interviewers, onSave, onCancel 
         */
         />
       </form>
-      <InterviewerList interviewers={interviewers} value={newInterviewer} onChange={setInterviewer} />
+      <InterviewerList interviewers={interviewers} interviewer={newInterviewer} setInterviewer={setInterviewer} />
     </section>
     <section className="appointment__card-right">
       <section className="appointment__actions">
         <Button danger onClick={() => onCancel()}>Cancel</Button>
-        <Button confirm disabled={newInterviewer} onClick={onSave(newName, newInterviewer)}>Save</Button>
+        <Button confirm disabled={!newInterviewer} onClick={onSave(newName, newInterviewer)}>Save</Button>
       </section>
     </section>
   </main >

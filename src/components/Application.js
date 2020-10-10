@@ -25,8 +25,8 @@ export default function Application(props) {
   // const interviewers = () => { return state.interviewers };
 
   const setDay = day => setState({ ...state, day });
-  const setDays = days => setState({ ...state, days });
-  const setAppointments = appointments => setState({ ...state, appointments });
+  // const setDays = days => setState({ ...state, days });
+  // const setAppointments = appointments => setState({ ...state, appointments });
 
   // const statePromises = Promise.all([axios.get("api/days"), axios.get("api/appointments")])
 
