@@ -14,6 +14,7 @@ export default function Appointment({ key, id, time, interview, interviewers, bo
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
+  const EDIT = "EDIT";
 
   const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY)
 
@@ -40,7 +41,7 @@ export default function Appointment({ key, id, time, interview, interviewers, bo
     {mode === CREATE && <Form
       interviewers={interviewers}
       onSave={() => save}
-      onCancel={() => back}
+      onCancel={() => back()}
       />}
 
   </article>
