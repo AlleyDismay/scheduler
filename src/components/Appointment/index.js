@@ -9,13 +9,12 @@ import Form from "components/Appointment/Form";
 
 import useVisualMode from "hooks/useVisualMode";
 
-export default function Appointment({ key, id, time, interview, interviewers, bookInterview}) {
+export default function Appointment({id, time, interview, interviewers, bookInterview}) {
 
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
-  const EDIT = "EDIT";
-
+  
   const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY)
 
   function save(name, interviewer) {
