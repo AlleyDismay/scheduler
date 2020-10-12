@@ -29,7 +29,7 @@ export default function Form({ name, interviewer, interviewers, onSave, onCancel
     <section className="appointment__card-right">
       <section className="appointment__actions">
         <Button danger onClick={() => onCancel()}>Cancel</Button>
-        <Button confirm disabled={!newInterviewer} onClick={onSave(newName, newInterviewer)}>Save</Button>
+        <Button confirm disabled={!newInterviewer} onClick={() => {onSave(newName, newInterviewer)}}>Save</Button>
       </section>
     </section>
   </main >
