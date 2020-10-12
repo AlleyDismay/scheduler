@@ -13,6 +13,7 @@ export default function InterviewerList({ interviewers, interviewer, setIntervie
           {interviewers.map(({ id, name, avatar }) => {
             return <InterviewerListItem
               key={id}
+              id={id}
               name={name}
               avatar={avatar}
               setInterviewer={setInterviewer}
