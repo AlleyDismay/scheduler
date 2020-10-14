@@ -9,8 +9,6 @@ export default function Form({ name, interviewer, interviewers, onSave, onCancel
   const [newName, setName] = useState(name || "");
   const [newInterviewer, setInterviewer] = useState(interviewer || null);
 
-  console.log("interviewer", interviewer)
-
   return <main className="appointment__card appointment__card--create">
     <section className="appointment__card-left">
       <form autoComplete="off" onSubmit={event => event.preventDefault()}>
