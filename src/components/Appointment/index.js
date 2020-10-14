@@ -39,7 +39,7 @@ export default function Appointment({id, time, interview, interviewers, bookInte
     )}
     {mode === CREATE && <Form
       interviewers={interviewers}
-      onSave={() => save}
+      onSave={save}
       onCancel={() => back}
       />}
 
