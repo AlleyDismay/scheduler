@@ -10,7 +10,7 @@ import Status from "components/Appointment/Status";
 
 import useVisualMode from "hooks/useVisualMode";
 
-export default function Appointment({ id, time, interview, interviewers, bookInterview }) {
+export default function Appointment({ id, time, interview, interviewers, bookInterview, cancelInterview }) {
 
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
@@ -29,6 +29,11 @@ export default function Appointment({ id, time, interview, interviewers, bookInt
     transition(SHOW)
   }
 
+  function deleting() {
+    cancelInterview(id)
+    transition(EMPTY)
+  }
+
   return <article className="appointment">
     <Header time={time} />
     {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
@@ -37,7 +42,7 @@ export default function Appointment({ id, time, interview, interviewers, bookInt
         student={interview.student}
         interviewer={interview.interviewer}
         onEdit={() => transition(CREATE)}
-        onDelete={() => transition(EMPTY)}
+        onDelete={deleting}
       />
     )}
     {mode === CREATE && <Form

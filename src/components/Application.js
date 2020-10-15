@@ -55,6 +55,19 @@ export default function Application(props) {
     setAppointments(appointments);
   }  
 
+  function cancelInterview(id) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    axios.put(`/api/appointments/${id}`, appointment);
+    setAppointments(appointments);
+  }  
+
   return (
     <main className="layout">
       <section className="sidebar">
@@ -87,6 +100,7 @@ export default function Application(props) {
             interview={getInterview(state, interview)}
             interviewers={getInterviewsForDay(state, state.day)}
             bookInterview={bookInterview}
+            cancelInterview={cancelInterview}
           />
         })}
         <Appointment key="last" time="5pm" />
