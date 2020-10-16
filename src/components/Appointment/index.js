@@ -16,6 +16,7 @@ export default function Appointment({ id, time, interview, interviewers, bookInt
   const SHOW = "SHOW";
   const CREATE = "CREATE";
   const SAVING = "SAVING";
+  const DELETING = "DELETING";
 
   const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY)
 
@@ -30,6 +31,7 @@ export default function Appointment({ id, time, interview, interviewers, bookInt
   }
 
   function deleting() {
+    transition(DELETING)
     cancelInterview(id)
     transition(EMPTY)
   }
@@ -51,6 +53,6 @@ export default function Appointment({ id, time, interview, interviewers, bookInt
       onCancel={() => back}
     />}
     {mode === SAVING && <Status message={SAVING}/>}
-
+    {mode === DELETING && <Status message={DELETING}/>}
   </article>
 }
