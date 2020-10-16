@@ -11,10 +11,10 @@ export default function Form({ name, interviewer, interviewers, onSave, onCancel
 
   return <main className="appointment__card appointment__card--create">
     <section className="appointment__card-left">
-      <form autoComplete="off" onSubmit={event => {event.preventDefault()}}>
+      <form autoComplete="off" onBlur={event => {setName(event.target.value)}}>
         <input
           className="appointment__create-input text--semi-bold"
-          name={newName}
+          name="name"
           type="text"
           placeholder="Enter Student Name"
         /*
