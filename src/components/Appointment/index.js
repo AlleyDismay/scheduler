@@ -1,72 +1,58 @@
-import React, {useState} from "react";
+import React from "react";
 
 import "components/Appointment/styles.scss";
 
-import Header from "components/Appointment/Header.js";
+import Header from "components/Appointment/Header";
 import Empty from "components/Appointment/Empty.js";
 import Show from "components/Appointment/Show.js";
-import Form from "components/Appointment/Form.js";
+import Form from "components/Appointment/Form";
+import Status from "components/Appointment/Status";
 
 import useVisualMode from "hooks/useVisualMode";
 
-export default function Appointment({ id, time, interview, interviewers, bookInterview }) {
+export default function Appointment({ id, time, interview, interviewers, bookInterview, cancelInterview }) {
 
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
+  const SAVING = "SAVING";
+  const DELETING = "DELETING";
 
-  // const [{ mode, transition, back }, setMode] = useState(useVisualMode(interview ? SHOW : EMPTY));
-
-  const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
+  const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY)
 
   function save(name, interviewer) {
-    // const interview = {
-    //   student: name,
-    //   interviewer
-    // };
-    bookInterview(id, interview);
+    const interview = {
+      student: name,
+      interviewer
+    };
+    transition(SAVING)
+    bookInterview(id, interview)
+    transition(SHOW)
   }
 
-  console.log("interview", interview);
-  console.log("mode result", interview ? SHOW : EMPTY);
-  console.log("mode selection", useVisualMode(interview ? SHOW : EMPTY))
-  console.log("mode", mode);
+  function deleting() {
+    transition(DELETING)
+    cancelInterview(id)
+    transition(EMPTY)
+  }
 
   return <article className="appointment">
     <Header time={time} />
     {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
     {mode === SHOW && (
       <Show
-        student={interview ? interview.student : `This Interview is ${interview}. The mode is ${mode}. "interview ? SHOW : EMPTY" is ${interview ? SHOW : EMPTY}. Well, something's wrong with Mode === SHOW...`}
-        // student={interview.student}
-        // interviewer={interview.interviewer}
-        // student="Only Monday Doesn't Break. Days Change but Interview is Null when It shouldn't be..."
-        interviewer={{
-          "id": 1,
-          "name": "Sylvia Palmer",
-          "avatar": "https://i.imgur.com/LpaY82x.png"
-        }}
+        student={interview.student}
+        interviewer={interview.interviewer}
+        onEdit={() => transition(CREATE)}
+        onDelete={deleting}
       />
     )}
-    {/* {(interview ? SHOW : EMPTY) === SHOW && (
-      <Show
-        student={interview ? interview.student : `This Interview is ${interview}. The mode is ${mode}.`}
-        // student={interview.student}
-        // interviewer={interview.interviewer}
-        // student="Only Monday Doesn't Break. Days Change but Interview is Null when It shouldn't be..."
-        interviewer={{
-          "id": 1,
-          "name": "Sylvia Palmer",
-          "avatar": "https://i.imgur.com/LpaY82x.png"
-        }}
-      />
-    )} */}
     {mode === CREATE && <Form
-      name=""
       interviewers={interviewers}
-      interviewer={interviewers[0]}
-      onSave={() => save("", interviewers[0])}
-      onCancel={() => { back() }}
+      onSave={save}
+      onCancel={() => back}
     />}
+    {mode === SAVING && <Status message={SAVING}/>}
+    {mode === DELETING && <Status message={DELETING}/>}
   </article>
 }

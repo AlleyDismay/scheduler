@@ -4,17 +4,17 @@ import Button from "components/Button";
 import InterviewerList from "components/InterviewerList";
 
 
-export default function Form({ name, interviewer, interviewers, onCancel, onSave }) {
+export default function Form({ name, interviewer, interviewers, onSave, onCancel }) {
 
-  const [nameState, setName] = useState(name || "");
-  const [interviewerState, setInterviewer] = useState(interviewer || null);
+  const [newName, setName] = useState(name || "");
+  const [newInterviewer, setInterviewer] = useState(interviewer || null);
 
   return <main className="appointment__card appointment__card--create">
     <section className="appointment__card-left">
-      <form autoComplete="off" onSubmit={event => event.preventDefault()}>
+      <form autoComplete="off" onSubmit={event => {event.preventDefault()}}>
         <input
           className="appointment__create-input text--semi-bold"
-          name={nameState}
+          name={newName}
           type="text"
           placeholder="Enter Student Name"
         /*
@@ -22,19 +22,15 @@ export default function Form({ name, interviewer, interviewers, onCancel, onSave
         */
         />
       </form>
-      <InterviewerList
-        interviewers={interviewers}
-        value={interviewerState}
-        onChange={setInterviewer}
-      />
+      <InterviewerList interviewers={interviewers} interviewer={newInterviewer} setInterviewer={setInterviewer} />
     </section>
     <section className="appointment__card-right">
       <section className="appointment__actions">
-        <Button danger onClick={() => { setName(""); setInterviewer(null); onCancel() }}>Cancel</Button>
-        <Button confirm onClick={onSave}>Save</Button>
+        <Button danger onClick={() => onCancel()}>Cancel</Button>
+        <Button confirm disabled={!newInterviewer} onClick={() => {onSave(newName, newInterviewer)}}>Save</Button>
       </section>
     </section>
-  </main>
+  </main >
 
 
 }
